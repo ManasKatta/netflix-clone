@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const Movie = ({ item }) => {
+const TVShow = ({ item }) => {
   const [like] = useState(false);
  
   const navigate = useNavigate();
 
-  const trailerURL = `https://api.themoviedb.org/3/movie/${item?.id}/videos?api_key=2974558603f942cd73ecb0ba9db30e40&language=en-US`;
+  const trailerURL = `https://api.themoviedb.org/3/tv/${item?.id}/videos?api_key=2974558603f942cd73ecb0ba9db30e40&language=en-US`;
   console.log(trailerURL);
   const playTrailer = () => {
     axios.get(trailerURL).then((response) => {
@@ -22,7 +22,7 @@ const Movie = ({ item }) => {
       navigate(`/watch/${response.data.results[0].key}`, {
         state: {
           movie: item,
-          type: 'Movie',
+          type: 'Show',
         }
       }
       );
@@ -33,7 +33,7 @@ const Movie = ({ item }) => {
 
   return (
     <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
-      <p className="text-white">{item?.title}</p>
+      <p className="text-white">{item?.name}</p>
       <img
         className="w-full h-auto block"
         src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
@@ -59,4 +59,4 @@ const Movie = ({ item }) => {
   );
 };
 
-export default Movie;
+export default TVShow;

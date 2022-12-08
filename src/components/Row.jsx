@@ -3,9 +3,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Movie from "./Movie";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import TVShow from "./TVShow";
 
-const Row = ({ title, fetchURL, rowID}) => {
+const Row = ({ title, fetchURL, rowID, type}) => {
   const [movies, setMovies] = useState([]);
+  console.log(type);
 
   useEffect(() => {
     axios.get(fetchURL).then((response) => {
@@ -26,7 +28,7 @@ const Row = ({ title, fetchURL, rowID}) => {
 
   return (
     <>
-      <h2 className="text-white font-bold md:text-xl p-4">{title}</h2>
+      <h2 className="text-red-600 font-bold md:text-xl px-1 py-2">{title}</h2>
       <div className="relative flex items-center group">
         <MdChevronLeft
           onClick={slideLeft}
@@ -38,7 +40,7 @@ const Row = ({ title, fetchURL, rowID}) => {
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
           {movies.map((item, id) => (
-            <Movie key={id} item={item} />
+            type === 'Movie' ? <Movie key={id} item={item} /> : type === 'Show' ? <TVShow key = {id} item = {item}/> : <div>Something went wrong</div>
           ))}
         </div>
         <MdChevronRight
