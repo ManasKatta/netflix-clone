@@ -7,13 +7,16 @@ import TVShow from "./TVShow";
 
 const Row = ({ title, fetchURL, rowID, type }) => {
   const [movies, setMovies] = useState([]);
-  console.log(type);
+  //console.log(type);
 
   useEffect(() => {
     axios.get(fetchURL).then((response) => {
       setMovies(response.data.results);
     });
   }, [fetchURL]);
+
+  console.log(movies);
+  console.log(fetchURL);
 
   const slideLeft = () => {
     var slider = document.getElementById("slider" + rowID);
@@ -26,7 +29,7 @@ const Row = ({ title, fetchURL, rowID, type }) => {
 
   return (
     <>
-      <h2 className="text-red-600 font-bold md:text-xl px-1 py-2">{title}</h2>
+      <h2 className="text-red-600 font-bold md:text-xl px-2 py-1">{title}</h2>
       <div className="relative flex items-center group">
         <MdChevronLeft
           onClick={slideLeft}

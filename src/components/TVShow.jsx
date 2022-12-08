@@ -9,7 +9,7 @@ const TVShow = ({ item }) => {
   const navigate = useNavigate();
 
   const trailerURL = `https://api.themoviedb.org/3/tv/${item?.id}/videos?api_key=2974558603f942cd73ecb0ba9db30e40&language=en-US`;
-  console.log(trailerURL);
+  //console.log(trailerURL);
   const playTrailer = () => {
     axios.get(trailerURL).then((response) => {
       //console.table(response.data.results);

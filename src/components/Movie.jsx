@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 //import { FaHeart, FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 const Movie = ({ item }) => {
-  const [like] = useState(false);
+  //const [like] = useState(false);
  
   const navigate = useNavigate();
 
   const trailerURL = `https://api.themoviedb.org/3/movie/${item?.id}/videos?api_key=2974558603f942cd73ecb0ba9db30e40&language=en-US`;
-  console.log(trailerURL);
+  //console.log(trailerURL);
   const playTrailer = () => {
     axios.get(trailerURL).then((response) => {
       //console.table(response.data.results);
@@ -32,7 +32,7 @@ const Movie = ({ item }) => {
 
 
   return (
-    <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
+    <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2 overflow-hidden">
       <p className="text-white">{item?.title}</p>
       <img
         className="w-full h-auto block"

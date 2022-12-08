@@ -10,13 +10,13 @@ const Video = ({ movie, props }) => {
   console.log(vkey);
   return (
     <>
-      <div className="py-20">
-        <p className="text-white text-[27px] py-1">
+      <div className="py-20 overflow-auto scrollbar-hide">
+        <p className="text-white text-[27px] py-3 px-4">
           You are watching: {location.state.type === 'Movie' ? location.state.movie.title : location.state.movie.name}
         </p>
         <div className="relative flex flex-col items-center">
           <iframe
-            className="w-screen h-[550px]"
+            className="w-screen h-screen px-4"
             // width="1000"
             // height="562"
             src={`https://www.youtube.com/embed/${vkey.videoKey}`}
@@ -26,7 +26,9 @@ const Video = ({ movie, props }) => {
             allowfullscreen
           ></iframe>
         </div>
-        <p className="text-[#F3F6FB] text-[14px] py-2">
+        <p className="text-[#F3F6FB] text-[14px] py-2 px-2">
+          Release Date: {location.state.movie.release_date}
+          <br></br>
           Summary: {location.state.movie.overview}
         </p>
         {location.state.type === "Movie" ? (

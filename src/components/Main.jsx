@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import requests from "../Requests";
+import { useNavigate } from "react-router-dom";
 const Main = () => {
   const [movies, setMovies] = useState([]);
   //const [trailer, setTrailer] = useState([]);
@@ -14,16 +15,24 @@ const Main = () => {
   }, []);
   //console.log(movie);
   //console.log(movie?.id);
-
+  const navigate = useNavigate();
   const trailerURL = `https://api.themoviedb.org/3/movie/${movie?.id}/videos?api_key=2974558603f942cd73ecb0ba9db30e40&language=en-US`;
-  console.log(trailerURL);
+  //console.log(trailerURL);
   const playTrailer = () => {
     axios.get(trailerURL).then((response) => {
       //console.table(response.data.results);
       //console.log("key");
       //console.log(response.data.results[0].key);
-      window.open(
-        `https://www.youtube.com/watch?v=${response.data.results[0].key}`
+      // window.open(
+      //   `https://www.youtube.com/watch?v=${response.data.results[0].key}`
+      // );
+      console.log("hi");
+      navigate(`/watch/${response.data.results[0].key}`, {
+        state: {
+          movie: movie,
+          type: 'Movie',
+        }
+      }
       );
     });
   };
