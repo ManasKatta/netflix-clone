@@ -5,7 +5,7 @@ import Movie from "./Movie";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import TVShow from "./TVShow";
 
-const Row = ({ title, fetchURL, rowID, type}) => {
+const Row = ({ title, fetchURL, rowID, type }) => {
   const [movies, setMovies] = useState([]);
   console.log(type);
 
@@ -16,15 +16,13 @@ const Row = ({ title, fetchURL, rowID, type}) => {
   }, [fetchURL]);
 
   const slideLeft = () => {
-    var slider = document.getElementById('slider' + rowID)
+    var slider = document.getElementById("slider" + rowID);
     slider.scrollLeft = slider.scrollLeft - 500;
-  }
+  };
   const slideRight = () => {
-    var slider = document.getElementById('slider' + rowID)
+    var slider = document.getElementById("slider" + rowID);
     slider.scrollLeft = slider.scrollLeft + 500;
-  }
-
-  
+  };
 
   return (
     <>
@@ -39,9 +37,15 @@ const Row = ({ title, fetchURL, rowID, type}) => {
           id={"slider" + rowID}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
-          {movies.map((item, id) => (
-            type === 'Movie' ? <Movie key={id} item={item} /> : type === 'Show' ? <TVShow key = {id} item = {item}/> : <div>Something went wrong</div>
-          ))}
+          {movies.map((item, id) =>
+            type === "Movie" ? (
+              <Movie key={id} item={item} />
+            ) : type === "Show" ? (
+              <TVShow key={id} item={item} />
+            ) : (
+              <div>Something went wrong</div>
+            )
+          )}
         </div>
         <MdChevronRight
           onClick={slideRight}
