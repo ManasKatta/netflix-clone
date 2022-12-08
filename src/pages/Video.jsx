@@ -12,7 +12,10 @@ const Video = ({ movie, props }) => {
     <>
       <div className="py-20 overflow-auto scrollbar-hide">
         <p className="text-white text-[27px] py-3 px-4">
-          You are watching: {location.state.type === 'Movie' ? location.state.movie.title : location.state.movie.name}
+          You are watching:{" "}
+          {location.state.type === "Movie"
+            ? location.state.movie.title
+            : location.state.movie.name}
         </p>
         <div className="relative flex flex-col items-center">
           <iframe

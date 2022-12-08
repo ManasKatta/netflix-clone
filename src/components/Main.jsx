@@ -30,10 +30,9 @@ const Main = () => {
       navigate(`/watch/${response.data.results[0].key}`, {
         state: {
           movie: movie,
-          type: 'Movie',
-        }
-      }
-      );
+          type: "Movie",
+        },
+      });
     });
   };
 
