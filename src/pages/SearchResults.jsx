@@ -11,7 +11,8 @@ const SearchResults = () => {
         <Row
           rowID="1"
           title={`Showing Results for: ${searchterm.searchTerm}`}
-          fetchURL={`https://api.themoviedb.org/3/search/movie?api_key=2974558603f942cd73ecb0ba9db30e40&query=${searchterm.searchTerm}&page=1`}
+          type = 'Movie'
+          fetchURL={`https://api.themoviedb.org/3/search/multi?api_key=2974558603f942cd73ecb0ba9db30e40&query=${searchterm.searchTerm}&page=1`}
         />
       </div>
     </>
