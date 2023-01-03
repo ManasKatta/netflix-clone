@@ -12,10 +12,8 @@ const Video = ({ movie, props }) => {
     <>
       <div className="py-20 overflow-auto scrollbar-hide">
         <p className="text-white text-[27px] py-3 px-4">
-          You are watching:{" "}
-          {location.state.type === "Movie"
-            ? location.state.movie.title
-            : location.state.movie.name}
+          You are watching:{location.state.name}
+          
         </p>
         <div className="relative flex flex-col items-center">
           <iframe
@@ -34,14 +32,14 @@ const Video = ({ movie, props }) => {
           <br></br>
           Summary: {location.state.movie.overview}
         </p>
-        {location.state.type === "Movie" ? (
+        {location.state.movie.title? (
           <Row
             rowID="1"
             title={`Similar Movies To: ${location.state.movie.title}`}
             type="Movie"
             fetchURL={`https://api.themoviedb.org/3/movie/${location.state.movie.id}/similar?api_key=2974558603f942cd73ecb0ba9db30e40&language=en-US&page=1`}
           />
-        ) : location.state.type === "Show" ? (
+        ) : location.state.movie.name? (
           <Row
             rowID="1"
             title={`Similar Shows To: ${location.state.movie.name}`}

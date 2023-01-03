@@ -1,10 +1,34 @@
-import React from "react";
-//import { FaHeart, FaRegHeart } from "react-icons/fa";
+import React, {useState} from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {UserAuth} from '../context/AuthContext'
+import {db} from '../firebase'
+import {arrayUnion, doc, updateDoc} from 'firebase/firestore'
 
 const Movie = ({ item }) => {
-  //const [like] = useState(false);
+  const [like, setLike] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const {user} = UserAuth();
+
+  const movieID = doc(db, 'users', `${user?.email}`);
+
+  const saveMovie = async () => {
+    if(user?.email) {
+      setLike(!like)
+      setSaved(true)
+      await updateDoc(movieID, {
+        savedShows: arrayUnion({
+          id: item.id,
+          title: item.title,
+          img: item.backdrop_path,
+          movie: item,
+        })
+      })
+    } else {
+      alert('Please log in first');
+    }
+  }
  
   const navigate = useNavigate();
 
@@ -22,6 +46,7 @@ const Movie = ({ item }) => {
       navigate(`/watch/${response.data.results[0].key}`, {
         state: {
           movie: item,
+          name: item.title,
           type: 'Movie',
         }
       }
@@ -47,12 +72,12 @@ const Movie = ({ item }) => {
           </button>
         </p>
        
-        <p>
-          {/* {like ? (
-            <FaHeart className="absolute top-4 left-4 text-gray-300" />
+        <p onClick={saveMovie}>
+          {like ? (
+            <FaHeart className="absolute top-4 left-4 text-red-600" />
           ) : (
             <FaRegHeart className="absolute top-4 left-4 text-gray-300" />
-          )} */}
+          )}
         </p>
       </div>
     </div>

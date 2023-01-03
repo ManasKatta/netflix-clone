@@ -5,7 +5,7 @@ import Row from "../components/Row";
 import requests from "../Requests";
 const Home = () => {
   return (
-    <>
+    <div className=" overflow-auto scroll-smooth scrollbar-hide">
       <Main />
       <div className="py-20 overflow-auto scrollbar-hide">
         <h1 className="text-white font-bold text-[30px] px-2">Movies</h1>
@@ -62,7 +62,7 @@ const Home = () => {
           E-mail: manas.katta@gmail.com
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
